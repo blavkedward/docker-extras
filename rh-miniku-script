@@ -1,0 +1,38 @@
+
+# This should be made inside a directory called scripts 
+
+
+#!/bin/bash
+
+# Install Docker on Red Hat
+
+# Update package manager
+sudo yum update -y
+
+# Install Docker dependencies
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+
+# Add Docker repository
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+# Install Docker
+sudo yum install -y docker-ce docker-ce-cli containerd.io
+
+# Start and enable Docker service
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Add user to the 'docker' group
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Install Minikube on Red Hat
+
+# Download and install Minikube
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+
+# Start Minikube
+minikube start
+
+# Verify Minikube installation
+minikube status
