@@ -36,3 +36,8 @@ minikube start
 
 # Verify Minikube installation
 minikube status
+
+
+
+# make file readable and executable after running install
+chmod +x install_minikube_docker.sh
